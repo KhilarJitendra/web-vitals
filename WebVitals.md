@@ -10,6 +10,12 @@ They tell you how good or bad your site feels for **real users**.
 - ⚡ **Responsiveness** – When you click something, does it react fast?  
 - 🧱 **Stability** – Do things jump around while loading?
 
+> How fast it loads
+
+> How smooth it reacts
+
+> How stable it looks
+
 ---
 
 ## 2. What are Core Web Vitals?
@@ -148,12 +154,26 @@ Measures how fast your site responds **the first time** a user interacts.
 FID ≈ INP but only for the **first** interaction.  
 That’s why Google replaced it with INP for better accuracy.
 
+Think of it like this:
+FID = “How fast did the site respond the first time I touched it?”
+INP = “How fast does the site respond every time I touch it?”
+
+That’s why Google replaced FID with INP (as of March 2024).
+INP is more realistic and user-focused.
+
 ---
 
 ### 2. First Contentful Paint (FCP)
 
 **What it measures:**  
 How long it takes for the **first visible content** (text/image) to appear.
+
+Example (E-commerce Site)
+For your app (abc.com):
+
+When the header, logo, or loading spinner first appears → that’s your FCP.
+The large hero banner might come later — that’s part of LCP.
+So FCP happens before LCP.
 
 **Good score:** `FCP ≤ 1.8s`
 
@@ -184,10 +204,23 @@ How long it takes your browser to get the **first byte of data** from your serve
 - Server location  
 - Caching strategy
 
-**Example:**
-1. You type `abc.com`
-2. DNS + server processing → 600ms later, first HTML byte arrives  
-3. ✅ TTFB = 600ms (page hasn’t rendered yet)
+🧩 Example (PLP: Product Listing Page)
+Let’s say a user visits https://abc.com/products:
+
+Browser sends request → server
+
+DNS lookup
+TCP connection
+SSL handshake
+Server starts generating HTML
+🔹 This entire delay = TTFB
+Browser receives first byte of HTML
+✅ TTFB stops measuring here.
+HTML loads, browser reads your JavaScript (React/Next.js)
+
+JS runs, fetches product data from API
+Products render on screen
+⛔ All of this (API fetching, rendering, images) is NOT part of TTFB.
 
 Everything that happens *after* receiving the first byte (fetching product data, images, etc.) is **not part of TTFB**.
 
@@ -221,7 +254,7 @@ Everything that happens *after* receiving the first byte (fetching product data,
 Check your site’s performance using:
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - [PageSpeed Insights](https://pagespeed.web.dev/)
-- [Chrome DevTools → Performance Tab](chrome://inspect)
+- [Chrome DevTools → Performance Tab](https://developer.chrome.com/docs/crux)
 
 ---
 
