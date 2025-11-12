@@ -254,7 +254,7 @@ Everything that happens *after* receiving the first byte (fetching product data,
 Check your site’s performance using:
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - [PageSpeed Insights](https://pagespeed.web.dev/)
-- [Chrome DevTools → Performance Tab](https://developer.chrome.com/docs/crux)
+- [Crux](https://developer.chrome.com/docs/crux)
 
 ---
 
